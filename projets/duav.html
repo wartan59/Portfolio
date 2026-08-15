@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet | Drone Intercepteur H1-Alifractura (Dassault UAV Challenge)</title>
+    <!-- On remonte d'un dossier pour charger le style global -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+   STYLES SPECIFIQUES A LA PAGE PROJET
+   ========================================================================== */
+
+/* 1. Hero / En-tête */
+.project-hero {
+    position: relative;
+    min-height: 55vh;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.4)),
+                url('../assets/img/projets/drone/img_presentation.jpg') center/cover no-repeat;
+    color: #ffffff;
+    padding: 8rem 2rem 4rem;
+}
+
+.project-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.project-hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+/* 2. Sommaire */
+.toc-container {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    margin: 2rem 0 3.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.toc-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-main);
+}
+
+.toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-left: 0.5rem;
+}
+
+.toc-list a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.toc-list a:hover {
+    color: var(--primary-hover);
+    padding-left: 0.3rem;
+}
+
+/* 3. Layout des Articles (Texte & Image) */
+.article-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    margin-bottom: 4.5rem;
+}
+
+.article-text h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.article-text p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.article-img-container {
+    width: 100%;
+    height: 320px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.article-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.article-img-container:hover img {
+    transform: scale(1.03);
+}
+
+/* --- CLASSE D'ALTERNANCE EXPLICITE --- */
+/* Inverse la colonne Texte et la colonne Image sur écran large */
+.article-section.reverse .article-text {
+    order: 2;
+}
+
+.article-section.reverse .article-img-container {
+    order: 1;
+}
+
+/* 4. Responsive Design (Mobiles) */
+@media (max-width: 850px) {
+    .project-hero h1 {
+        font-size: 2rem;
+    }
+
+    .article-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Sur mobile, on remet toujours l'image sous le texte */
+    .article-section.reverse .article-text {
+        order: 1;
+    }
+
+    .article-section.reverse .article-img-container {
+        order: 2;
+    }
+
+    .article-img-container {
+        height: 240px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">MonPortfolio<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">À propos</a></li>
+                <li><a href="../index.html#education">Parcours</a></li>
+                <li><a href="../index.html#certifications">Certifications</a></li>
+                <li><a href="../index.html#projects">Projets</a></li>
+                <li><a href="../index.html#cv">CV</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- En-tête avec l'Image Principale de Présentation -->
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <a href="../index.html#projects" class="project-link" style="color: #60a5fa; margin-bottom: 1rem; display: inline-flex;">
+                    <i class="fas fa-arrow-left"></i> Retour aux projets
+                </a>
+                <h1>Drone Intercepteur Autonome H1-Alifractura</h1>
+                <div class="tags">
+                    <span class="tag">Aéronautique</span>
+                    <span class="tag">Dassault UAV Challenge</span>
+                    <span class="tag">IA & Vision 360°</span>
+                    <span class="tag">Impression 3D</span>
+                    <span class="tag">Autonomie 1h</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            
+            <!-- Introduction & Contexte Général -->
+            <div class="about-text" style="margin-bottom: 2.5rem;">
+                <h2>Introduction</h2>
+                <p>
+                    Développé pour la compétition <strong>Dassault UAV Challenge 2026</strong> par une équipe d'étudiants ingénieurs des Arts et Métiers (ENSAM Lille), le projet <strong>H1-Alifractura</strong> est une solution de défense aérienne agile et 100% autonome. Conçu pour patrouiller, détecter via IA et neutraliser des drones intrus grâce à un missile secondaire à filet (<em>Phoneutria</em>), cet aéronef à voilure fixe relève un défi technique complet sous un budget strict plafonné à 1000€.
+                </p>
+            </div>
+
+            <!-- Sommaire / Table des Matières -->
+            <nav class="toc-container" aria-label="Sommaire de la page">
+                <div class="toc-title">
+                    <i class="fas fa-list-ol"></i> Sommaire du projet
+                </div>
+                <ol class="toc-list">
+                    <li><a href="#partie-1">1. Contexte du concours & Cahier des charges</a></li>
+                    <li><a href="#partie-2">2. Architecture & Aérodynamique de la voilure</a></li>
+                    <li><a href="#partie-3">3. Groupe motopropulseur & Pack Batterie Li-Ion</a></li>
+                    <li><a href="#partie-4">4. Avionique, Capteurs & Caméra 360°</a></li>
+                    <li><a href="#partie-5">5. IA d'interception & Missile Phoneutria</a></li>
+                    <li><a href="#partie-6">6. Design du Train d'Atterrissage & Trappes Rétractables</a></li>
+                </ol>
+            </nav>
+
+            <!-- ==========================================================================
+               SYSTÈME D'ARTICLES ALTERNÉS (IMAGE DROITE / GAUCHE)
+               ========================================================================== -->
+               
+               <!-- 1. Contexte & CdCF -->
+                <article id="partie-1" class="article-section">
+                    <div class="article-text">
+                        <h2>1. Contexte & Cahier des charges</h2>
+                        <p>
+                            Face à la multiplication des attaques de drones multicoptères et d'aéronefs légers, le projet vise à assurer la protection autonome d'une zone aérienne prédéfinie.
+                        </p>
+                        <p>
+                            Le cahier des charges impose une mission 100% autonome (du décollage au retour à la base), une vitesse maximale de <strong>80 km/h</strong>, une autonomie de vol d'<strong>une heure</strong>, et la conformité aux exigences de sécurité de la DGAC, le tout dans un budget global de <strong>1000 €</strong>.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/drone/img1.jpg" alt="Contexte du concours Dassault UAV Challenge">
+                    </div>
+                </article>
+
+                <!-- 2. Architecture & CAO -->
+                <article id="partie-2" class="article-section reverse">
+                    <div class="article-text">
+                        <h2>2. Architecture & Aérodynamique</h2>
+                        <p>
+                            H1-Alifractura adopte une configuration monoplan à aile fixe de <strong>2000 mm d'envergure</strong> avec un profil haute portance Selig S1223 et un empennage bi-dérive en H (profils NACA 0009).
+                        </p>
+                        <p>
+                            Le fuselage à profil plat (longueur de 1,5 mm) est optimisé pour loger l'électronique et la charge utile tout en conservant une traînée faible. La structure mixte associe des longerons internes en fibre de carbone à des éléments imprimés en 3D (PLA / LW-PLA) et des renforts en aluminium.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/drone/img2.jpg" alt="Modélisation CAO et structure du drone H1-Alifractura">
+                    </div>
+                </article>
+
+                <!-- 3. Propulsion & Batterie -->
+                <article id="partie-3" class="article-section">
+                    <div class="article-text">
+                        <h2>3. Propulsion & Énergie</h2>
+                        <p>
+                            La chaîne de propulsion s'appuie sur une hélice propulsive bipale (14x10) entraînée par un moteur Brushless Outrunner d'environ 400 Kv (puissance max 1500–2000 W) alimenté sous une tension de service 6S (22.2 V).
+                        </p>
+                        <p>
+                            Pour garantir l'heure d'autonomie requise avec une masse totale maximale au décollage de 8 kg, un pack batterie sur-mesure de <strong>6S10P en cellules Li-Ion 21700</strong> (42 000 mAh, ~4.2 kg) a été conçu pour délivrer l'énergie nécessaire en vol de croisière.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/drone/img3.jpg" alt="Groupe motopropulseur et pack batterie Li-Ion">
+                    </div>
+                </article>
+
+                <!-- 4. Avionique & Capteurs -->
+                <article id="partie-4" class="article-section reverse">
+                    <div class="article-text">
+                        <h2>4. Avionique & Traitement embarqué</h2>
+                        <p>
+                            L'architecture électronique embarque un contrôleur de vol redondant couplé à un GPS/GNSS  et une centrale inertielle (IMU). La liaison longue portée est assurée par un réseau LoRa pour la télémétrie et le retour d'urgence automatique (failsafe).
+                        </p>
+                        <p>
+                            Le drone est doté d'une vision panoramique via une caméra 360° reliée à une unité de calcul embarquée (Raspberry Pi 4 / GPU) responsable du traitement vidéo temps réel et de la surveillance sol.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/drone/img4.jpg" alt="Systèmes électroniques, Raspberry Pi et communications LoRa">
+                    </div>
+                </article>
+
+                <!-- 5. IA & Charge utile -->
+                <article id="partie-5" class="article-section">
+                    <div class="article-text">
+                        <h2>5. IA & Missile Phoneutria</h2>
+                        <p>
+                            Un modèle d'intelligence artificielle personnalisé s'occupe de la détection et de la classification automatique des drones cibles dans un rayon de 100 m. Une fois la cible verrouillée, l'aéronef adapte sa trajectoire pour aligner le tir.
+                        </p>
+                        <p>
+                            La charge utile est composée du missile secondaire autonome <strong>Phoneutria</strong>. Largué depuis le drone principal, il s'approche de la cible pour déployer à proximité un filet de capture non létal neutralisant les hélices.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/drone/img5.jpg" alt="Système de largage et missile intercepteur Phoneutria">
+                    </div>
+                </article>
+
+                <!-- 6. Travail spécifique : Trains d'atterrissage & Trappes -->
+                <article id="partie-6" class="article-section reverse">
+                    <div class="article-text">
+                        <h2>6. Design des Trains d'Atterrissage & Trappes</h2>
+                        <p>
+                            Une tâche clé que j'ai intégralement menée a été la conception CAO complète du <strong>système d'atterrissage tricycle rétractable (avant et arrière)</strong>. Le défi principal résidait dans l'intégration d'un mécanisme à trappes cinématiques rétablissant parfaitement la continuité de la géométrie extérieure du fuselage pour minimiser la traînée aérodynamique.
+                        </p>
+                        <p>
+                            J'ai apporté une attention particulière à trois critères majeurs :<br>
+                            • <strong>Résistance mécanique aux impacts :</strong> dimensionnement dynamique sous sollicitations sévères lors du toucher des roues à 8 kg sur terrain herbeux.<br>
+                            • <strong>Gestion des jeux & ajustements :</strong> tolérances fines pour éviter tout coincement lors de la rétraction tout en garantissant un placage hermétique des trappes en vol.<br>
+                            • <strong>Montabilité & Maintenabilité :</strong> modularité des pièces imprimées 3D et des platines PETG pour faciliter l'assemblage et le remplacement rapide des jambes de train.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/drone/img6.jpg" alt="Conception CAO du train d'atterrissage rétractable et trappes cinématiques">
+                    </div>
+                </article>
+
+            
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 - Développé par Louis Ramette. Hébergé sur GitHub Pages.</p>
+    </footer>
+
+    <!-- Script JS Global -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

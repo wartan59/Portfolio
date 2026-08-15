@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet | L'Oréal Brandstorm (National Winner)</title>
+    <!-- On remonte d'un dossier pour charger le style global -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+   STYLES SPECIFIQUES A LA PAGE PROJET
+   ========================================================================== */
+
+/* 1. Hero / En-tête */
+.project-hero {
+    position: relative;
+    min-height: 55vh;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.4)),
+                url('../assets/img/projets/brandstorm/img_presentation.jpg') center/cover no-repeat;
+    color: #ffffff;
+    padding: 8rem 2rem 4rem;
+}
+
+.project-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.project-hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+/* Grille de chiffres clés */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0 3rem;
+}
+
+.stat-card {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* 2. Sommaire */
+.toc-container {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    margin: 2rem 0 3.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.toc-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-main);
+}
+
+.toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-left: 0.5rem;
+}
+
+.toc-list a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.toc-list a:hover {
+    color: var(--primary-hover);
+    padding-left: 0.3rem;
+}
+
+/* Meta badge date / lieu */
+.step-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+}
+
+/* 3. Layout des Articles (Texte & Image) */
+.article-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    margin-bottom: 4.5rem;
+}
+
+.article-text h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.article-text p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.article-img-container {
+    width: 100%;
+    height: 320px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.article-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.article-img-container:hover img {
+    transform: scale(1.03);
+}
+
+/* --- CLASSE D'ALTERNANCE EXPLICITE --- */
+.article-section.reverse .article-text {
+    order: 2;
+}
+
+.article-section.reverse .article-img-container {
+    order: 1;
+}
+
+/* 4. Responsive Design */
+@media (max-width: 850px) {
+    .project-hero h1 {
+        font-size: 2rem;
+    }
+
+    .article-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .article-section.reverse .article-text {
+        order: 1;
+    }
+
+    .article-section.reverse .article-img-container {
+        order: 2;
+    }
+
+    .article-img-container {
+        height: 240px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">MonPortfolio<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">À propos</a></li>
+                <li><a href="../index.html#education">Parcours</a></li>
+                <li><a href="../index.html#certifications">Certifications</a></li>
+                <li><a href="../index.html#projects">Projets</a></li>
+                <li><a href="../index.html#cv">CV</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- En-tête avec l'Image Principale de Présentation -->
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <a href="../index.html#projects" class="project-link" style="color: #60a5fa; margin-bottom: 1rem; display: inline-flex;">
+                    <i class="fas fa-arrow-left"></i> Retour aux projets
+                </a>
+                <h1>L'Oréal Brandstorm | National Winner</h1>
+                <div class="tags">
+                    <span class="tag">Demi-Finale Monde</span>
+                    <span class="tag">Éco-Conception UX</span>
+                    <span class="tag">Design for Manufacturing</span>
+                    <span class="tag">Usinage CNC Aluminium</span>
+                    <span class="tag">Arts et Métiers</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            
+            <!-- Introduction & Contexte Général -->
+            <div class="about-text" style="margin-bottom: 1.5rem;">
+                <h2>Introduction</h2>
+                <p>
+                    <strong>L'Oréal Brandstorm</strong> est l'une des plus grandes compétitions d'innovation au monde, réunissant chaque année des dizaines de milliers d'étudiants autour de défis prospectifs pour l'industrie de la beauté. Représentant les Arts et Métiers (ENSAM), notre équipe a relevé le défi de réinventer l'expérience utilisateur et le packaging du parfum iconique <strong>Azzaro Wanted</strong> (L'Oréal Luxe).
+                </p>
+            </div>
+
+            <!-- Chiffres Clés du Projet -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">+80 000</div>
+                    <div class="stat-label">Candidats à l'échelle mondiale</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Top Monde</div>
+                    <div class="stat-label">Qualifiés pour la Demi-Finale Monde</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Prototypes fonctionnels (FDM & CNC Alu)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Rechargeable & Pensé pour l'injection plastique</div>
+                </div>
+            </div>
+
+            <!-- Sommaire / Table des Matières -->
+            <nav class="toc-container" aria-label="Sommaire de la page">
+                <div class="toc-title">
+                    <i class="fas fa-list-ol"></i> Sommaire du projet
+                </div>
+                <ol class="toc-list">
+                    <li><a href="#partie-1">1. Hackathon GadzInnov : Concept initial & Preuve de Concept (Lille)</a></li>
+                    <li><a href="#partie-2">2. Modélisation CAO V1 & Candidature Numérique Nationale</a></li>
+                    <li><a href="#partie-3">3. Demi-Finale & Finale France : Qualification Nationale</a></li>
+                    <li><a href="#partie-4">4. Industrialisation : Démarche Design for Manufacturing (DFM) & Injection</a></li>
+                    <li><a href="#partie-5">5. Prototype V2 : Usinage CNC Aluminium & Fioles Réelles</a></li>
+                    <li><a href="#partie-6">6. Demi-Finale Mondiale au Visionnaire (Paris) & Retour d'Expérience</a></li>
+                </ol>
+            </nav>
+
+            <!-- ==========================================================================
+               SYSTÈME D'ARTICLES ALTERNÉS (IMAGE DROITE / GAUCHE)
+               ========================================================================== -->
+               
+               <!-- 1. Hackathon GadzInnov -->
+                <article id="partie-1" class="article-section">
+                    <div class="article-text">
+                        <div class="step-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Automne 2025</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Campus Arts et Métiers, Lille</span>
+                        </div>
+                        <h2>1. Hackathon GadzInnov : Concept & Premier POC</h2>
+                        <p>
+                            L'aventure débute lors du hackathon d'innovation interne <em>GadzInnov</em> sur le campus des Arts et Métiers de Lille. Face à la thématique « Craft the Future of Luxury Fragrance », nous ciblons deux concepts clés : le <em>Layering</em> et le <em>Wardrobing</em>. Nous appliquons ces concepts sur le flacon-barillet iconique Azzaro Wanted.
+                        </p>
+                        <p>
+                            En moins de 48 heures, nous imaginons un nouveau concept permettant un remplacement fluide des capsules de parfum. Nous concrétisons l'idée avec un premier <strong>Proof of Concept (POC) imprimé en 3D</strong>, validant immédiatement notre idée pour la suite de l'aventure.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/brandstorm/gadzinnov.jpg" alt="Premier POC imprimé en 3D lors du Hackathon GadzInnov">
+                    </div>
+                </article>
+
+                <!-- 2. Modélisation & V1 Mécanique -->
+                <article id="partie-2" class="article-section reverse">
+                    <div class="article-text">
+                        <div class="step-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Janvier - Février 2026</span>
+                            <span><i class="fas fa-laptop-code"></i> CAO & Studio Média</span>
+                        </div>
+                        <h2>2. Modélisation CAO & Sélection Nationale</h2>
+                        <p>
+                            Pour officialiser notre dossier à L'Oréal Brandstorm, nous structurons une modélisation CAO paramétrique rigoureuse intégrant les dimensions réelles du flacon de 50 / 100 mL selon les marchés visés.
+                        </p>
+                        <p>
+                            Le mécanisme V1 s'enrichit de pièces métalliques du commerce : ressorts de compression pour les pompes et le rechargement, roulements miniatures pour fluidifier la rotation et visserie. Nous appuyons cette avancée par un pitch vidéo scénarisé et un support de présentation clair.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/brandstorm/cao.jpg" alt="Modélisation CAO de la cinématique interne du barillet">
+                    </div>
+                </article>
+
+                <!-- 3. Finale France -->
+                <article id="partie-3" class="article-section">
+                    <div class="article-text">
+                        <div class="step-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Mars - Avril 2026</span>
+                            <span><i class="fas fa-map-marker-alt"></i> L'Oréal Seine 62 et Le Visionnaire</span>
+                        </div>
+                        <h2>3. Demi-Finale & Finale France</h2>
+                        <p>
+                            Sélectionnés parmi les meilleures équipes universitaires et grandes écoles de France, nous défendons notre projet en présentiel face aux comités de direction et experts de la division L'Oréal Luxe.
+                        </p>
+                        <p>
+                            La démonstration en direct de notre prototype fonctionnel V1, combinée à une réponse solide sur l'apport à l'expérience client et sur l'éco-conception, nous propulse sur le podium national et nous ouvre les portes de la compétition internationale.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/brandstorm/france.jpg" alt="Présentation sur scène lors de la Finale France Brandstorm">
+                    </div>
+                </article>
+
+                <!-- 4. Démarche DFM & Injection -->
+                <article id="partie-4" class="article-section reverse">
+                    <div class="article-text">
+                        <div class="step-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Avril - Mai 2026</span>
+                            <span><i class="fas fa-cogs"></i> Ingénierie des Procédés</span>
+                        </div>
+                        <h2>4. Transition DFM & Étude d'Industrialisation</h2>
+                        <p>
+                            Pour préparer la finale mondiale, nous transformons notre conception de <em>Design for 3D Printing</em> en une approche complète de <strong>Design for Manufacturing (DFM)</strong> pour la grande série.
+                        </p>
+                        <p>
+                            Nous reconcevons chaque pièce avec les contraintes d'injection plastique : angles de dépouille, respect des épaisseurs et lignes de joint, tout en chiffrant les coûts d'outillage.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/brandstorm/usinage.JPG" alt="Étude d'outillage, dépouilles et analyse rhéologique pour injection">
+                    </div>
+                </article>
+
+                <!-- 5. Prototype V2 Usiné Aluminium -->
+                <article id="partie-5" class="article-section">
+                    <div class="article-text">
+                        <div class="step-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Mai - Juin 2026</span>
+                            <span><i class="fas fa-industry"></i> Ateliers d'Usinage ENSAM</span>
+                        </div>
+                        <h2>5. Prototype V2 : Usinage CNC Aluminium & Fioles Réelles</h2>
+                        <p>
+                            Pour offrir aux jurys un niveau de réalisme et de sensorialité digne d'un produit commercialisé, nous fabriquons une <strong>version V2 usinée par commande numérique (CNC) en aluminium massif</strong>.
+                        </p>
+                        <p>
+                            Le système est doté d'un ajustement micrométrique des jeux mécaniques et complété par de véritables fioles en plastique remplies de fragrance. Résultat : une inertie en main fidèle, un toucher noble et un cliquetis métallique qui subliment l'expérience.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/brandstorm/prototype2.jpeg" alt="Prototype V2 de luxe usiné en aluminium massif avec fioles en verre">
+                    </div>
+                </article>
+
+                <!-- 6. Demi-Finale Monde & Bilan -->
+                <article id="partie-6" class="article-section reverse">
+                    <div class="article-text">
+                        <div class="step-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Juin 2026</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Le Visionnaire, Paris</span>
+                        </div>
+                        <h2>6. Demi-Finale Monde & Bilan d'Expérience</h2>
+                        <p>
+                            L'aboutissement de notre parcours s'est déroulé au <strong>Visionnaire</strong>, l'hôtel particulier historique et centre d'innovation mondial de L'Oréal à Paris, aux côtés des meilleures délégations internationales issues de plus de 60 pays.
+                        </p>
+                        <p>
+                            Cette aventure a représenté un formidable accélérateur : maîtrise de la prise de parole et du pitch sous haute pression, création de supports percutants sur la suite Adobe, expertise poussée en dimensionnement mécanique/matériaux et confrontation directe aux exigences de l'industrie du luxe.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/brandstorm/finale.jpeg" alt="Présentation devant le jury international au Visionnaire à Paris">
+                    </div>
+                </article>
+            
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 - Développé par Louis Ramette. Hébergé sur GitHub Pages.</p>
+    </footer>
+
+    <!-- Script JS Global -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
