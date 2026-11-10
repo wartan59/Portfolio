@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet | Bras Robotisé SO-ARM101 (Open-Source)</title>
+    <!-- Feuille de style globale -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           STYLES SPÉCIFIQUES - SO-ARM101
+           ========================================================================== */
+
+        .project-hero {
+            position: relative;
+            min-height: 55vh;
+            display: flex;
+            align-items: flex-end;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.45)),
+                        url('../assets/img/projets/so-arm101/pick_hori.jpg') center/cover no-repeat;
+            color: #ffffff;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .project-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .project-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        /* Chiffres clés */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 3.5rem;
+        }
+
+        .stat-card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.6rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Sommaire */
+        .toc-container {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin: 2.5rem 0 3.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .toc-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding-left: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .toc-list a:hover {
+            color: var(--primary-hover);
+            padding-left: 0.3rem;
+        }
+
+        /* Layout Articles */
+        .article-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .article-text h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .article-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .article-text ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+
+        .article-text ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .article-text ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .article-img-container {
+            width: 100%;
+            height: 330px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            background-color: #f8fafc;
+        }
+
+        .article-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .article-img-container:hover img {
+            transform: scale(1.03);
+        }
+
+        .img-placeholder-card {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            background: repeating-linear-gradient(
+                45deg,
+                #f8fafc,
+                #f8fafc 12px,
+                #f1f5f9 12px,
+                #f1f5f9 24px
+            );
+            color: var(--text-muted);
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .img-placeholder-card i {
+            font-size: 2.8rem;
+            color: #94a3b8;
+        }
+
+        .img-placeholder-card span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .img-placeholder-card small {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .article-section.reverse .article-text {
+            order: 2;
+        }
+
+        .article-section.reverse .article-img-container {
+            order: 1;
+        }
+
+        @media (max-width: 850px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .article-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .article-section.reverse .article-text {
+                order: 1;
+            }
+
+            .article-section.reverse .article-img-container {
+                order: 2;
+            }
+
+            .article-img-container {
+                height: 240px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">Louis Ramette<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">À propos</a></li>
+                <li><a href="../index.html#education">Parcours</a></li>
+                <li><a href="../index.html#certifications">Certifications</a></li>
+                <li><a href="../index.html#projects">Projets</a></li>
+                <li><a href="../index.html#cv">CV</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- En-tête du projet avec visuel de présentation -->
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <a href="../index.html#projects" class="project-link" style="color: #60a5fa; margin-bottom: 1rem; display: inline-flex;">
+                    <i class="fas fa-arrow-left"></i> Retour aux projets
+                </a>
+                <h1>Bras Robotisé Open-Source SO-ARM101</h1>
+                <div class="tags">
+                    <span class="tag">Robotique Sérielle</span>
+                    <span class="tag">Open-Source</span>
+                    <span class="tag">Impression 3D FDM</span>
+                    <span class="tag">Servos STS3215</span>
+                    <span class="tag">Téléopération Maître-Esclave</span>
+                    <span class="tag">Pick & Place</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            
+            <!-- Introduction & Contexte Général -->
+            <div class="about-text" style="margin-bottom: 2rem;">
+                <h2>Introduction & Philosophie Open-Source</h2>
+                <p>
+                    Le <strong>SO-ARM101</strong> représente une révolution dans l'apprentissage et le déploiement de la robotique de manipulation : rendre la robotique sérielle multi-axes accessible à tous grâce à la fabrication additive et à des servomoteurs intelligents sur bus série.
+                </p>
+                <p>
+                    Ce projet retrace la fabrication, l'assemblage complet, la procédure de calibration méticuleuse, le pilotage en mode miroir maître-esclave (téléopération), ainsi que l'entraînement du bras à des tâches autonomes de préhension et dépose (<em>Pick and Place</em>).
+                </p>
+            </div>
+
+            <!-- Chiffres Clés du Projet -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">6-DOF</div>
+                    <div class="stat-label">Degrés de liberté articulaires</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Châssis imprimable en 3D (FDM)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1 Mbps</div>
+                    <div class="stat-label">Bus série half-duplex (STS3215)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Pick & Place</div>
+                    <div class="stat-label">Manipulation d'objets autonome</div>
+                </div>
+            </div>
+
+            <!-- Sommaire / Table des Matières -->
+            <nav class="toc-container" aria-label="Sommaire de la page">
+                <div class="toc-title">
+                    <i class="fas fa-list-ol"></i> Sommaire du projet
+                </div>
+                <ol class="toc-list">
+                    <li><a href="#partie-1">1. Qu'est-ce que le SO-ARM101 ? Atouts & Communauté</a></li>
+                    <li><a href="#partie-2">2. Assemblage de mon SO-ARM101 & Procédure de Calibration</a></li>
+                    <li><a href="#partie-3">3. Contrôle Téléopéré en Mode Maître-Esclave (Leader / Follower)</a></li>
+                    <li><a href="#partie-4">4. Entraînement Autonome au Pick and Place & Démonstration</a></li>
+                </ol>
+            </nav>
+
+            <!-- ==========================================================================
+               ARTICLES DÉTAILLÉS ALTERNÉS
+               ========================================================================== -->
+
+            <!-- 1. Qu'est-ce que le SO-ARM101 -->
+            <article id="partie-1" class="article-section">
+                <div class="article-text">
+                    <h2>1. Qu'est-ce que le SO-ARM101 ? Atouts & Communauté</h2>
+                    <p>
+                        Issu de l'écosystème open-source (notamment propulsé par <em>The Robot Studio</em> et la communauté <em>Hugging Face LeRobot</em>), le SO-ARM101 est un manipulateur robotique articulé conçu pour démocratiser la recherche en robotique et en intelligence artificielle incarnée (*Embodied AI*).
+                    </p>
+                    <p>Ses atouts distinctifs :</p>
+                    <ul>
+                        <li><strong>Fabrication Additive intégrale :</strong> l'ensemble des éléments structuraux est imprimable en 3D (FDM en PLA+ ou PETG), réduisant drastiquement les coûts par rapport à l'usinage traditionnel.</li>
+                        <li><strong>Coût ultra-accessible :</strong> un budget divisé par 10 à 20 par rapport aux bras industriels ou éducatifs équivalents.</li>
+                        <li><strong>Architecture modulaire & Servos intelligents :</strong> utilisation de servomoteurs magnétiques Feetech STS3215 capables de renvoyer position, vitesse, charge et température sur une unique ligne série.</li>
+                        <li><strong>Forte dynamique communautaire :</strong> partage continu d'améliorations mécaniques, de wrappers Python et de datasets d'imitation.</li>
+                    </ul>
+                </div>
+                <div class="article-img-container">
+                    <img src="../assets/img/projets/so-arm101/SO-ARM101-details-size8think8robotics.jpg" alt="Schéma cinématique et modélisation du SO-ARM101">
+                </div>
+            </article>
+
+            <!-- 2. Mon bras & Calibration -->
+            <article id="partie-2" class="article-section reverse">
+                <div class="article-text">
+                    <h2>2. SO-ARM101 & Procédure de Calibration</h2>
+                    <p>
+                        Après l'impression 3D soignée des pièces (orientations des couches optimisées pour reprendre les efforts de flexion sur chaque pivot), j'ai procédé à l'intégration des servomoteurs STS3215, au routage des câbles et à l'assemblage de la pince.
+                    </p>
+                    <p>
+                        <strong>La phase clé de calibration :</strong><br>
+                        Pour qu'un bras articulé suive des trajectoires précises sans dérive, une procédure de calibration rigoureuse est indispensable :
+                    </p>
+                    <ul>
+                        <li>Alignement mécanique des axes dans une position géométrique de référence connue (*Home position*).</li>
+                        <li>Lecture des encodeurs magnétiques absolus des servomoteurs via le bus série.</li>
+                        <li>Calcul et enregistrement des offsets angulaires zéro dans la mémoire non-volatile pour compenser les jeux mécaniques et les décalages de crantage.</li>
+                        <li>Vérification logicielle des butées logicielles (*soft limits*) pour prévenir toute collision mécanique.</li>
+                    </ul>
+                </div>
+                <div class="article-img-container">
+                    <img src="../assets/img/projets/so-arm101/calibration_le_robot.jpg" alt="calibration seedstudio SO-ARM101 assemblé">
+                </div>
+            </article>
+
+            <!-- 3. Mode Maître-Esclave -->
+            <article id="partie-3" class="article-section">
+                <div class="article-text">
+                    <h2>3. Contrôle Téléopéré en Mode Maître-Esclave</h2>
+                    <p>
+                        L'un des modes les plus fascinants du SO-ARM101 réside dans son architecture de <strong>téléopération bilatérale Maître-Esclave (*Leader / Follower*)</strong>.
+                    </p>
+                    <p>
+                        Dans cette configuration, l'opérateur manipule directement un bras maître passif (dont les servomoteurs lisent les positions manuelles sans opposer de résistance). En temps réel, les angles mesurés sur les 6 articulations sont envoyés au bras esclave actif, qui reproduit instantanément les mêmes mouvements avec force motrice.
+                    </p>
+                    <p>
+                        Ce dispositif offre un contrôle ultra-intuitif et sert de passerelle idéale pour l'apprentissage par imitation : il suffit de réaliser une tâche manuellement pour en enregistrer la séquence complète sans écrire une seule ligne de cinématique inverse complexe.
+                    </p>
+                </div>
+                <div class="article-img-container">
+                    <img src="../assets/img/projets/so-arm101/MISO.jpg" alt="Configuration Maître-Esclave du SO-ARM101">
+                </div>
+            </article>
+
+            <!-- 4. Pick and Place & Animation -->
+            <article id="partie-4" class="article-section reverse">
+                <div class="article-text">
+                    <h2>4. Entraînement Autonome au Pick and Place</h2>
+                    <p>
+                        Une fois la calibration validée et la cinématique maîtrisée, le bras a été programmé pour exécuter de manière autonome des cycles complets de <strong>Pick and Place</strong> (saisie, transfert et dépose d'objets cibles).
+                    </p>
+                    <p>
+                        L'algorithme gère la séquence complète : approche au-dessus de l'objet, descente contrôlée, serrage dosé de la pince, levée verticale, translation vers la zone de dépose et relâchement propre. La régularité des moteurs STS3215 garantit une excellente répétabilité d'exécution pour des scénarios de tri ou de manipulation sur table.
+                    </p>
+                </div>
+                <div class="article-img-container">
+                    <img src="../assets/img/projets/so-arm101/pick_hori.jpg" alt=" SO-ARM101 récupérant un objet">
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 - Louis Ramette. Conçu et développé avec passion. Hébergé sur GitHub Pages.</p>
+    </footer>
+
+    <!-- Script JS Global -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

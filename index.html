@@ -12,7 +12,7 @@
     <!-- Header HTML direct -->
     <header>
         <nav class="navbar">
-            <a href="index.html" class="logo">MonPortfolio<span>.</span></a>
+            <a href="index.html" class="logo">Louis Ramette<span>.</span></a>
             <ul class="nav-links">
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#education">Parcours</a></li>
@@ -28,9 +28,9 @@
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="hero-content">
-                <h1>Bonjour, je suis <span class="highlight">Louis</span></h1>
-                <h2>Étudiant en Ingénierie & Passionné d'Innovation</h2>
-                <p>Bienvenue sur mon portfolio. Je conçois et développe des projets mêlant Design, CAO, Électronique, Systèmes embarqués et Prototypage.</p>
+                <h1>Louis <span class="highlight">Ramette</span></h1>
+                <h2>Élève-Ingénieur Arts et Métiers & Futur Spécialiste Systèmes Embarqués (KTH)</h2>
+                <p>Ingénierie mécatronique, modélisation CAO avancée et développement de systèmes embarqués. De la conception cinématique au prototypage fonctionnel, je conçois des solutions matérielles et logicielles innovantes.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn primary-btn">Voir mes projets</a>
                     <a href="#contact" class="btn secondary-btn">Me contacter</a>
@@ -46,16 +46,55 @@
                     <img src="assets/img/profile.jpg" alt="Photo de profil" class="profile-img">
                 </div>
                 <div class="about-text">
-                    <p>Actuellement étudiant aux Arts et Métiers, je vise un double diplôme à KTH Royal Institute of Technology pour l'année prochaine, avec une spécialisation en systèmes embarqués. Ma passion ? Allier mécanique et programmation pour donner vie, mouvement et intelligence au matériel.</p>
-                    <p>Je me rappelle encore la première fois où j'ai vu s'animer un bras robotique après des heures de travail : de la réflexion initiale à la conception 3D, de l'impression des pièces à l'assemblage, jusqu'aux longues sessions de programmation et de débogage. Cette étincelle et ce sentiment pur de création m'animent au quotidien pour développer des solutions techniques et concevoir des prototypes.</p>
+                    <p>Élève-ingénieur aux <strong>Arts et Métiers (ENSAM)</strong> et en route vers un double diplôme à <strong>KTH Royal Institute of Technology</strong> axé sur les systèmes embarqués, je me positionne à l'interface de la mécanique de précision, de l'électronique et du logiciel embarqué.</p>
+                    <p>Ce qui me stimule ? <strong>Mener des projets de bout en bout</strong> : partir d'un cahier des charges rigoureux, concevoir l'architecture sous CAO, usiner ou imprimer les sous-ensembles, concevoir l'électronique et développer les lois de commande. Cette vision globale du prototypage rapide et de l'intégration mécatronique me permet de concrétiser des projets complexes, qu'il s'agisse de robotique sérielle, d'aéronautique autonome ou d'innovations industrielles primées.</p>
                 </div>
             </div>
         </section>
 
         <!-- Section Parcours -->
         <section id="education" class="section bg-light">
-            <h2 class="section-title">Parcours & Formation</h2>
-            <div class="timeline">
+            <h2 class="section-title">Parcours & Expériences</h2>
+            <div class="timeline-container-grid">
+                
+                <!-- Colonne Gauche : Expériences & Stages -->
+                <div class="timeline-column">
+                    <h3 class="timeline-column-title"><i class="fas fa-briefcase"></i> Expériences & Stages</h3>
+                    <div class="timeline">
+                        
+                        <!-- Stage L'Oréal R&I -->
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <img src="assets/img/LOreal.png" alt="Logo L'Oréal R&I" class="school-logo">
+                                <div class="timeline-title-group">
+                                    <h3>Stage R&D – Beauté Augmentée</h3>
+                                    <p class="institution">L'Oréal R&I – Hub Augmented Beauty, Suisse</p>
+                                </div>
+                            </div>
+                            <span class="date">Août 2025 - Présent</span>
+                            <p>Développement de dispositifs innovants à la frontière de la beauté et de la technologie : modélisation CAO, prototypage rapide, gestion de projet (délais, budget) et présentations techniques.</p>
+                        </div>
+
+                        <!-- Stage Machines-3D -->
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <img src="assets/img/M3D.png" alt="Logo Machines-3D" class="school-logo">
+                                <div class="timeline-title-group">
+                                    <h3>Stage Technique & R&D 3D</h3>
+                                    <p class="institution">Machines-3D, Bruay-sur-l'Escaut</p>
+                                </div>
+                            </div>
+                            <span class="date">Juin 2025 - Août 2025</span>
+                            <p>Diagnostic, maintenance et dépannage d'imprimantes 3D (FDM et résine). Tests R&D sur des résines dentaires, service client B2B et animation d'ateliers pédagogiques d'initiation lors d'un bootcamp.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Colonne Droite : Formation Académique -->
+                <div class="timeline-column">
+                    <h3 class="timeline-column-title"><i class="fas fa-graduation-cap"></i> Formation Académique</h3>
+                    <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-header">
                         <img src="assets/img/ENSAM.jpg" alt="Logo École d'Ingénieurs" class="school-logo">
@@ -65,7 +104,7 @@
                         </div>
                     </div>
                     <span class="date">2024 - Présent</span>
-                    <p>Ingénierie généraliste avec une expertise en mécatronique</p>
+                    <p>Formation d'ingénieur généraliste de référence : conception mécanique, science des matériaux, procédés de fabrication et systèmes mécatroniques.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-header">
@@ -76,7 +115,9 @@
                         </div>
                     </div>
                     <span class="date">2022 - 2024</span>
-                    <p>Classe préparatoire aux grandes écoles spécialité Maths, Physique, Sciences de l'ingénieur</p>
+                    <p>Classes Préparatoires aux Grandes Écoles (MPSI / PSI) : solide formation scientifique pluridisciplinaire, mathématique et physique appliquée.</p>
+                </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -227,6 +268,7 @@
         <button class="filter-btn" data-filter="robotique">Robotique</button>
         <button class="filter-btn" data-filter="electronique">Electronique</button>
         <button class="filter-btn" data-filter="drone">Drone</button>
+        <button class="filter-btn" data-filter="ia">Vision / IA</button>
         <button class="filter-btn" data-filter="cao">CAO</button>
         <button class="filter-btn" data-filter="gestion">Gestion</button>
     </div>
@@ -246,13 +288,13 @@
                     <span class="tag">C++</span>
                 </div>
                 <h3>Bras robot 5 axes</h3>
-                <p>Dimensionnement, conception, impression 3D et programmation d'un bras robotisé 5 axes d'une envergure de 0,8 m capable de supporter une charge de 1 kg en bout d'effet effecteur.</p>
+                <p>Conception mécatronique complète d'un robot sériel 5 axes (portée 0,8 m, charge utile 1 kg) : calculs cinématiques (MGD/MGI), réducteurs épicycloïdaux sur-mesure, interface IHM PyQt5 et pilotage Arduino.</p>
                 <a href="projets/bras-robot.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
 
         <!-- Drone H1-Alifractura -->
-        <article class="project-card" data-category="drone cao electronique">
+        <article class="project-card" data-category="drone cao electronique ia">
             <div class="project-img">
                 <img src="assets/img/projets/drone/img_presentation.jpg" alt="Drone H1-Alifractura">
             </div>
@@ -264,8 +306,8 @@
                     <span class="tag">Embarqué</span>
                 </div>
                 <h3>Drone H1-Alifractura</h3>
-                <p>Dimensionnement, conception, fabrication et programmation d'un drone à voilure fixe emportant des sous-systèmes intercepteurs dans le cadre du DUAV (Dassault UAV Challenge).</p>
-                <a href="projets/DUAV.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
+                <p>Aéronef autonome à voilure fixe pour le Dassault UAV Challenge : conception aérodynamique, pack Li-Ion 6S10P longue endurance (1h de vol), vision 360° par IA et conception du train d'atterrissage rétractable.</p>
+                <a href="projets/duav.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
 
@@ -282,7 +324,7 @@
                     <span class="tag">Prototypage</span>
                 </div>
                 <h3>L'Oréal Brandstorm (National Winner)</h3>
-                <p>Innovation sur le thème de la révolution du parfum : conception et adaptation d'un mécanisme multiparfums évitant la contamination des pompes avec un système de layering via un bouchon doseur rotatif.</p>
+                <p>Vainqueur National & Demi-finaliste Mondial : réinvention du packaging <em>Azzaro Wanted</em> via un système rotatif brevetable de layering sans contamination. Démarche DFM, injection plastique et prototype V2 usiné en CNC aluminium.</p>
                 <a href="projets/l-oreal-brandstorm.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
@@ -300,7 +342,7 @@
                     <span class="tag">Budget</span>
                 </div>
                 <h3>FabLab de l'ENSAM Lille</h3>
-                <p>Développement de la structure pour sa deuxième année : acquisition de nouvelles machines, organisation d'ateliers de formation, démarchage et gestion administrative du budget.</p>
+                <p>Pilotage opérationnel et technique du FabLab : gestion des investissements machines (usinage, FDM), formation des élèves-ingénieurs aux procédés de prototypage et animation de la communauté.</p>
                 <a href="projets/fablab.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
@@ -318,7 +360,7 @@
                     <span class="tag">Crise</span>
                 </div>
                 <h3>Hackathon Orion (Prix Logistique)</h3>
-                <p>Élaboration d'une solution stratégique en situation de crise axée sur la logistique militaire lors d'un hackathon intense de 24h sur la base militaire de Lille.</p>
+                <p>Prix Logistique Militaire (24h) : élaboration d'une stratégie de gestion de crise et de flux logistiques en environnement contesté, soutenue devant le gouverneur militaire de Lille, les hauts responsables de l'Armée de Terre et des dirigeants d'entreprises publiques et privées.</p>
                 <a href="projets/orion.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
@@ -354,8 +396,44 @@
                     <span class="tag">Usinage</span>
                 </div>
                 <h3>Usinage de PCB</h3>
-                <p>Routage et conception de cartes électroniques (PCB) sous KiCad 9.0, puis fabrication par gravure chimique ou usinage mécanique « à l'anglaise ».</p>
+                <p>Conception et fabrication rapide de circuits imprimés : schématique et routage sous KiCad, gravure à l'anglaise sur fraiseuse CNC ou procédé chimique au perchlorure de fer, puis brasage de composants CMS et traversants.</p>
                 <a href="projets/pcb.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <!-- Bras robotisé SO-ARM101 -->
+        <article class="project-card" data-category="robotique cao electronique">
+            <div class="project-img">
+                <img src="assets/img/projets/so-arm101/pick_hori.jpg" alt="Bras robotisé SO-ARM101">
+            </div>
+            <div class="project-info">
+                <div class="tags">
+                    <span class="tag">Robotique</span>
+                    <span class="tag">STS3215</span>
+                    <span class="tag">Impression 3D</span>
+                    <span class="tag">Python</span>
+                </div>
+                <h3>Bras robotisé SO-ARM101</h3>
+                <p>Fabrication, assemblage et calibration d'un bras robotique 6 axes open-source SO-ARM101. Contrôle en mode maître-esclave (téléopération) et entraînement à des tâches de Pick and Place.</p>
+                <a href="projets/so-arm101.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <!-- Vision par ordinateur avec YOLO -->
+        <article class="project-card" data-category="ia electronique robotique">
+            <div class="project-img">
+                <img src="assets/img/projets/vision-yolo/img_presentation.jpg" alt="Vision par ordinateur avec YOLO">
+            </div>
+            <div class="project-info">
+                <div class="tags">
+                    <span class="tag">Vision / IA</span>
+                    <span class="tag">YOLO</span>
+                    <span class="tag">OpenCV</span>
+                    <span class="tag">Deep Learning</span>
+                </div>
+                <h3>Vision par ordinateur (YOLO)</h3>
+                <p>Détection et localisation de main en temps réel : collecte de données, auto-labellisation MediaPipe, benchmark entre CNN custom (scratch vs transfer learning) et modèle YOLO.</p>
+                <a href="projets/vision-yolo.html" class="project-link">Détails du projet <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
 
@@ -373,7 +451,7 @@
             </div>
 
             <div class="cv-container">
-                <a href="assets/docs/CV_EN_Louis.pdf" download="CV_Ton_Nom.pdf" class="btn primary-btn">
+                <a href="assets/docs/CV_EN_Louis.pdf" download="CV_EN_Louis.pdf" class="btn primary-btn">
                     <i class="fas fa-file-download"></i> Télécharger le CV (PDF)
                 </a>
             </div>
@@ -395,7 +473,7 @@
 
     <!-- Footer HTML direct -->
     <footer>
-        <p>&copy; 2026 - Développé par moi. Hébergé sur GitHub Pages.</p>
+        <p>&copy; 2026 - Louis Ramette. Conçu et développé avec passion. Hébergé sur GitHub Pages.</p>
     </footer>
 
     <script src="js/main.js"></script>

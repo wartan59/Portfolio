@@ -186,10 +186,15 @@ footer {
 .about-text p { margin-bottom: 1.2rem; }
 
 .timeline { max-width: 850px; margin: 0 auto; position: relative; border-left: 3px solid var(--primary-color); padding-left: 2.5rem; }
+.timeline-container-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; max-width: 1200px; margin: 0 auto; }
+.timeline-column-title { font-size: 1.3rem; font-weight: 700; color: var(--text-main); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border-color); }
+.timeline-column-title i { color: var(--primary-color); }
+.timeline-column .timeline { max-width: 100%; margin: 0; }
 .timeline-item { margin-bottom: 3rem; position: relative; background-color: var(--bg-card); padding: 1.5rem 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
 .timeline-item::before { content: ''; position: absolute; left: calc(-2.5rem - 9px); top: 24px; width: 14px; height: 14px; border-radius: 50%; background-color: var(--primary-color); border: 3px solid #ffffff; }
 .timeline-header { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 0.8rem; }
-.school-logo { width: 55px; height: 55px; object-fit: contain; border-radius: var(--radius-md); background-color: #ffffff; border: 1px solid var(--border-color); padding: 4px; flex-shrink: 0; }
+.school-logo, .company-logo { width: 55px; height: 55px; object-fit: contain; border-radius: var(--radius-md); background-color: #ffffff; border: 1px solid var(--border-color); padding: 4px; flex-shrink: 0; }
+.company-logo { display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--primary-color); }
 .timeline-title-group h3 { font-size: 1.25rem; color: var(--text-main); }
 .timeline-title-group .institution { font-weight: 600; color: var(--primary-color); font-size: 0.95rem; }
 .timeline-item .date { display: inline-block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); background-color: var(--bg-light); padding: 0.2rem 0.6rem; border-radius: 20px; margin-bottom: 0.8rem; }
@@ -330,6 +335,7 @@ footer {
 
 /* RESPONSIVE */
 @media (max-width: 850px) {
+    .timeline-container-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .about-grid { grid-template-columns: 1fr; text-align: center; }
     .navbar { flex-direction: column; gap: 1rem; }
     .nav-links { gap: 1rem; font-size: 0.9rem; }

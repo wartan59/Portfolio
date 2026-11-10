@@ -160,7 +160,7 @@
     <!-- Header Navigation -->
     <header>
         <nav class="navbar">
-            <a href="../index.html" class="logo">MonPortfolio<span>.</span></a>
+            <a href="../index.html" class="logo">Louis Ramette<span>.</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html#about">À propos</a></li>
                 <li><a href="../index.html#education">Parcours</a></li>
@@ -260,7 +260,7 @@
                             Pour convertir le couple des moteurs pas à pas (NEMA 17 / NEMA 23), des réducteurs sur-mesure ont été intégrés directement au niveau des articulations. Une approche itérative couplée à des calculs Excel a permis de valider des trains épicycloïdaux imprimables à un ou deux étages.
                         </p>
                         <p>
-                            Par exemple, le bras 1 (le plus contraint) embarque un rapport de réduction de <strong>1:64</strong>, réduisant considérablement la vitesse de rotassion du moteur tout en augmentant son couple.
+                            Par exemple, le bras 1 (le plus contraint) embarque un rapport de réduction de <strong>1:64</strong>, réduisant considérablement la vitesse de rotation du moteur tout en augmentant son couple.
                         </p>
                     </div>
                     <div class="article-img-container">
@@ -273,10 +273,10 @@
                     <div class="article-text">
                         <h2>4. Modélisation Cinématique (MGD / MGI)</h2>
                         <p>
-                            La géométrie du bras 5 axes a été paramétrée selon la convention de <strong>Denavit-Hartenberg</strong> . Le Modèle Géométrique Direct (MGD) calcule la position cartésienne et l'orientation de l'outil via le produit des matrices homogènes $T_{05} = T_{01} \cdot T_{12} \cdot T_{23} \cdot T_{34} \cdot T_{45}$ .
+                            La géométrie du bras 5 axes a été paramétrée selon la convention de <strong>Denavit-Hartenberg</strong>. Le Modèle Géométrique Direct (MGD) calcule la position cartésienne et l'orientation de l'outil via le produit des matrices homogènes $T_{05} = T_{01} \cdot T_{12} \cdot T_{23} \cdot T_{34} \cdot T_{45}$.
                         </p>
                         <p>
-                            Le Modèle Géométrique Inverse (MGI) a été développé pour découpler la position du poignet et son orientation, permettant de calculer les 5 angles articulaires requis pour atteindre un point cible . Les trajectoires s'appuient sur un profil d'accélération trapézoïdal lissé afin de borner le <em>jerk</em> et d'éviter les à-coups .
+                            Le Modèle Géométrique Inverse (MGI) a été développé pour découpler la position du poignet et son orientation, permettant de calculer les 5 angles articulaires requis pour atteindre un point cible. Les trajectoires s'appuient sur un profil d'accélération trapézoïdal lissé afin de borner le <em>jerk</em> et d'éviter les à-coups.
                         </p>
                     </div>
                     <div class="article-img-container">
@@ -292,8 +292,8 @@
                             Développée en Python avec <strong>PyQt5</strong>, l'interface graphique offre un contrôle intuitif à deux niveaux  :
                         </p>
                         <p>
-                            • <strong>Commande angulaire directe :</strong> permet d'ajuster individuellement chaque axe, ses limites de vitesse et d'accélération .<br>
-                            • <strong>Commande cartésienne inverse :</strong> l'utilisateur saisit les coordonnées X, Y, Z et les angles d'orientation. Un repère 3D dynamique (Matplotlib) visualise la position/orientation visée en temps réel .
+                            • <strong>Commande angulaire directe :</strong> permet d'ajuster individuellement chaque axe, ses limites de vitesse et d'accélération.<br>
+                            • <strong>Commande cartésienne inverse :</strong> l'utilisateur saisit les coordonnées X, Y, Z et les angles d'orientation. Un repère 3D dynamique (Matplotlib) visualise la position/orientation visée en temps réel.
                         </p>
                     </div>
                     <div class="article-img-container">
@@ -306,14 +306,14 @@
                     <div class="article-text">
                         <h2>6. Intégration Hardware & Prototypage</h2>
                         <p>
-                            L'architecture électronique s'articule autour d'une carte Arduino couplée à un CNC Shield, des drivers A4988 et un driver numérique pour le NEMA 23 . L'ensemble de la puissance et de la commande est réuni dans un boîtier sur-mesure imprimé en 3D .
+                            L'architecture électronique s'articule autour d'une carte Arduino couplée à un CNC Shield, des drivers A4988 et un driver numérique pour le NEMA 23. L'ensemble de la puissance et de la commande est réuni dans un boîtier sur-mesure imprimé en 3D.
                         </p>
                         <p>
                             Les tests finaux ont validé la communication série USB entre l'IHM et l'Arduino, la prise d'origine via capteurs à effet Hall/fin de course, et la faisabilité globale de la manipulation de charges sur un robot totalement imprimé en 3D.
                         </p>
                     </div>
                     <div class="article-img-container">
-                        <img src="../assets/img/projets/bras-robot/Image6.jpg" alt="Boîtier électronique et prototype assemblé">
+                        <img src="../assets/img/projets/bras-robot/image6.jpg" alt="Boîtier électronique et prototype assemblé">
                     </div>
                 </article>
             

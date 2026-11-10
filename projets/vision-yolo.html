@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet | Détection & Tracking de Main (YOLO & Deep Learning)</title>
+    <!-- Feuille de style globale -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           STYLES SPÉCIFIQUES - VISION YOLO
+           ========================================================================== */
+
+        .project-hero {
+            position: relative;
+            min-height: 55vh;
+            display: flex;
+            align-items: flex-end;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.45)),
+                        url('../assets/img/projets/vision-yolo/img_presentation.jpg') center/cover no-repeat;
+            color: #ffffff;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .project-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .project-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        /* Chiffres clés */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 3.5rem;
+        }
+
+        .stat-card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.6rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Sommaire */
+        .toc-container {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin: 2.5rem 0 3.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .toc-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding-left: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .toc-list a:hover {
+            color: var(--primary-hover);
+            padding-left: 0.3rem;
+        }
+
+        /* Layout Articles */
+        .article-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .subsection-group {
+            margin-bottom: 4.5rem;
+        }
+
+        .subsection-group > h2 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+        }
+
+        .article-section.sub-article {
+            margin-bottom: 2.5rem;
+        }
+
+        .article-section.sub-article:last-child {
+            margin-bottom: 0;
+        }
+
+        .article-section.sub-article .article-img-container {
+            height: 240px;
+        }
+
+        .article-text h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .article-text h3 {
+            font-size: 1.25rem;
+            margin: 1.2rem 0 0.5rem;
+            color: var(--text-main);
+        }
+
+        .article-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .article-text ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+
+        .article-text ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .article-text ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .article-img-container {
+            width: 100%;
+            height: 330px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            background-color: #f8fafc;
+        }
+
+        .article-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .article-img-container:hover img {
+            transform: scale(1.03);
+        }
+
+        .article-section.sub-article .article-img-container.img-full,
+        .article-img-container.img-full {
+            height: auto;
+        }
+
+        .article-img-container.img-full img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .img-placeholder-card {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            background: repeating-linear-gradient(
+                45deg,
+                #f8fafc,
+                #f8fafc 12px,
+                #f1f5f9 12px,
+                #f1f5f9 24px
+            );
+            color: var(--text-muted);
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .img-placeholder-card i {
+            font-size: 2.8rem;
+            color: #94a3b8;
+        }
+
+        .img-placeholder-card span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .img-placeholder-card small {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Tableau Comparatif */
+        .comparison-wrapper {
+            margin: 3.5rem 0 4.5rem;
+        }
+
+        .comparison-wrapper h2 {
+            font-size: 1.75rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            background: #ffffff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            padding: 1.2rem 1.4rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .comparison-table td {
+            padding: 1.2rem 1.4rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Cartes Perspectives */
+        .perspectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .perspective-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .perspective-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .perspective-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .perspective-card h3 {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            margin-bottom: 0.6rem;
+        }
+
+        .perspective-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .article-section.reverse .article-text {
+            order: 2;
+        }
+
+        .article-section.reverse .article-img-container {
+            order: 1;
+        }
+
+        @media (max-width: 850px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .article-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .article-section.reverse .article-text {
+                order: 1;
+            }
+
+            .article-section.reverse .article-img-container {
+                order: 2;
+            }
+
+            .article-img-container {
+                height: 240px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">Louis Ramette<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">À propos</a></li>
+                <li><a href="../index.html#education">Parcours</a></li>
+                <li><a href="../index.html#certifications">Certifications</a></li>
+                <li><a href="../index.html#projects">Projets</a></li>
+                <li><a href="../index.html#cv">CV</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- En-tête du projet avec visuel de présentation -->
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <a href="../index.html#projects" class="project-link" style="color: #60a5fa; margin-bottom: 1rem; display: inline-flex;">
+                    <i class="fas fa-arrow-left"></i> Retour aux projets
+                </a>
+                <h1>Détection & Localisation de Main par Vision (YOLO)</h1>
+                <div class="tags">
+                    <span class="tag">Vision par Ordinateur</span>
+                    <span class="tag">Détection de Main</span>
+                    <span class="tag">CVAT & MediaPipe</span>
+                    <span class="tag">Transfer Learning</span>
+                    <span class="tag">YOLOv8</span>
+                    <span class="tag">OpenCV</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            
+            <!-- Introduction & Objectif du Projet -->
+            <div class="about-text" style="margin-bottom: 2rem;">
+                <h2>Introduction & Objectifs</h2>
+                <p>
+                    L'objectif de ce projet est de concevoir un système de vision par ordinateur robuste capable de <strong>détecter en temps réel si une main est présente devant la caméra</strong> et d'en estimer la <strong>position spatiale précise</strong> via une boîte englobante (*bounding box*).
+                </p>
+                <p>
+                    Au-delà de la simple inférence, ce projet met en valeur la chaîne complète d'un projet de Deep Learning appliqué : de la collecte d'images variées à la labellisation semi-automatique avec <strong>Google MediaPipe</strong>, jusqu'au benchmark comparatif entre un réseau de neurones personnalisé (*from scratch* vs *transfer learning*) et un modèle état de l'art <strong>YOLO</strong>.
+                </p>
+            </div>
+
+            <!-- Chiffres Clés du Projet -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Architectures comparées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">MediaPipe</div>
+                    <div class="stat-label">Auto-labellisation du dataset</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">CVAT</div>
+                    <div class="stat-label">Validation manuelle des formats</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Temps Réel</div>
+                    <div class="stat-label">Inférence haute cadence (OpenCV)</div>
+                </div>
+            </div>
+
+            <!-- Sommaire / Table des Matières -->
+            <nav class="toc-container" aria-label="Sommaire de la page">
+                <div class="toc-title">
+                    <i class="fas fa-list-ol"></i> Sommaire du projet
+                </div>
+                <ol class="toc-list">
+                    <li><a href="#partie-1">1. Data Engineering : Collecte, CVAT & Auto-Labellisation MediaPipe</a></li>
+                    <li><a href="#partie-2">2. Réseau Custom : Entraînement From Scratch vs Transfer Learning</a></li>
+                    <li><a href="#partie-3">3. Entraînement Direct d'un Modèle YOLO Spécifique</a></li>
+                    <li><a href="#partie-4">4. Benchmark & Comparatif des Résultats sur le Jeu de Test</a></li>
+                    <li><a href="#partie-5">5. Perspectives : Langue des Signes, Contrôle Gestuel & Squelette 3D</a></li>
+                </ol>
+            </nav>
+
+            <!-- ==========================================================================
+               ARTICLES DÉTAILLÉS ALTERNÉS
+               ========================================================================== -->
+
+            <!-- 1. Data Engineering & MediaPipe -->
+            <section id="partie-1" class="subsection-group">
+                <h2>1. Data Engineering : Collecte, CVAT & MediaPipe</h2>
+
+                <!-- 1.1 Collecte des Données -->
+                <article class="article-section sub-article">
+                    <div class="article-text">
+                        <h3>1.1 Collecte des Données</h3>
+                        <p>
+                            Constitution d'un jeu de données équilibré comprenant des images <strong>avec main</strong> et <strong>sans main</strong>, sous des conditions variées de luminosité, d'angles de vue et d'environnements (bureaux, fonds unis, arrière-plans complexes).
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/vision-yolo/collecte.jpg" alt="Collecte du jeu de données avec et sans main">
+                    </div>
+                </article>
+
+                <!-- 1.2 Labellisation Initiale avec CVAT -->
+                <article class="article-section sub-article">
+                    <div class="article-text">
+                        <h3>1.2 Labellisation Initiale avec CVAT</h3>
+                        <p>
+                            Première phase d'annotation manuelle sur l'outil <strong>CVAT</strong> pour poser les bases du format. Chaque image est associée à une étiquette précisant :
+                        </p>
+                        <ul>
+                            <li>La présence ou non d'une main (flag binaire <code>0</code> ou <code>1</code>).</li>
+                            <li>Les coordonnées normalisées du centre (X, Y) et les dimensions largeur/hauteur (W, H) de la boîte englobante.</li>
+                        </ul>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/vision-yolo/CVAT.png" alt="Annotation manuelle sous CVAT">
+                    </div>
+                </article>
+
+                <!-- 1.3 Automatisation Astucieuse avec Google MediaPipe -->
+                <article class="article-section sub-article">
+                    <div class="article-text">
+                        <h3>1.3 Automatisation Astucieuse avec Google MediaPipe</h3>
+                        <p>
+                            La labellisation manuelle devenant rapidement fastidieuse et chronophage, j'ai mis en place un pipeline d'auto-annotation en détournant la librairie <strong>Google MediaPipe Hands</strong>. MediaPipe a été utilisé comme générateur automatique de labels : extraction des points clés, calcul de la boîte englobante minimale et export direct au format d'entraînement sans intervention manuelle répétitive.
+                        </p>
+                    </div>
+                    <div class="article-img-container">
+                        <img src="../assets/img/projets/vision-yolo/annotation_auto.png" alt="Auto-labellisation avec Google MediaPipe"> 
+                    </div>
+                </article>
+
+                <!-- 1.4 Premier Entraînement From Scratch -->
+                <article class="article-section sub-article">
+                    <div class="article-text">
+                        <h3>1.4 Premier Entraînement From Scratch</h3>
+                        <p>
+                            Entraînement d'un premier réseau convolutionnel (CNN) entièrement <em>from scratch</em> (poids initialisés aléatoirement) sur ce dataset pour évaluer la capacité d'apprentissage brute.
+                        </p>
+                    </div>
+                    <div class="article-img-container img-full">
+                        <img src="../assets/img/projets/vision-yolo/CNN.png" alt="Résultats de l'entraînement CNN From Scratch">
+                    </div>
+                </article>
+            </section>
+
+            <!-- 2. Transfer Learning -->
+            <article id="partie-2" class="article-section reverse">
+                <div class="article-text">
+                    <h2>2. Réseau Custom avec Transfer Learning</h2>
+                    <p>
+                        Après avoir entraîné le modèle à partir de zéro, j'ai repris la même architecture de réseau en appliquant une démarche de <strong>Transfer Learning</strong> (utilisation d'un backbone aux poids pré-entraînés sur une large base de vision).
+                    </p>
+                    <p>
+                        Les couches convolutives profondes ont été figées pour conserver les détecteurs de textures et de contours généraux, tandis que la tête de classification et de régression (X, Y, W, H) a été fine-tunée sur notre dataset de mains.
+                    </p>
+                    <p>
+                        <strong>Résultat :</strong> Une vitesse de convergence démultipliée (moins d'époques d'entraînement nécessaires) et une bien meilleure capacité de généralisation face aux variations de couleur de peau et de luminosité.
+                    </p>
+                </div>
+                <div class="article-img-container">
+                    <img src="../assets/img/projets/vision-yolo/training.png" alt="Learning vs Scratch">
+                </div>
+            </article>
+
+            <!-- 3. Modèle YOLO -->
+            <article id="partie-3" class="article-section">
+                <div class="article-text">
+                    <h2>3. Entraînement Direct d'un Modèle YOLO</h2>
+                    <p>
+                        Pour franchir un cap en termes de cadence d'inférence (FPS) et de précision de localisation, j'ai entraîné un modèle dédié de la famille <strong>YOLO (You Only Look Once)</strong>.
+                    </p>
+                    <p>
+                        Grâce à son architecture <b>One-Stage</b>, YOLO traite l'image en une seule passe réseau, prédisant directement les probabilités de classe et les coordonnées de boîte englobante. 
+                    </p>
+                    <p>
+                        <strong>Performance :</strong> Une inférence ultra-rapide (&gt;30 FPS avec CPU), assurant un suivi fluide en temps réel.
+                    </p>
+                </div>
+                <div class="article-img-container">
+                    <img src="../assets/img/projets/vision-yolo/yolo.png" alt="inférence temps réel du modèle YOLO">
+                </div>
+            </article>
+
+            <!-- ==========================================================================
+               4. TABLEAU COMPARATIF : TEST SET
+               ========================================================================== -->
+            <section id="partie-4" class="comparison-wrapper">
+                <h2>4. Benchmark & Comparatif sur le Jeu de Test (Test Set)</h2>
+                <div class="table-responsive">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Approche / Modèle</th>
+                                <th style="width: 35%;">Précision de Détection</th>
+                                <th style="width: 35%;">Convergence / Entraînement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. CNN Custom (From Scratch)</strong></td>
+                                <td>Moyenne (sensible aux ombres et arrière-plans complexes)</td>
+                                <td>Lente (nombreuses époques requises pour converger)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. CNN Custom (Transfer Learning)</strong></td>
+                                <td>Bonne (forte réduction des faux positifs)</td>
+                                <td>Très rapide</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Modèle YOLO Dédié</strong></td>
+                                <td><strong>Excellente</strong> (localisation millimétrique de la boîte englobante)</td>
+                                <td>Optimisée</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ==========================================================================
+               5. PERSPECTIVES APPLICATIVES
+               ========================================================================== -->
+            <section id="partie-5">
+                <h2>5. Perspectives & Applications Futures</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem;">
+                    La détection et le suivi de main ouvrent la voie à des applications interactives et technologiques majeures :
+                </p>
+
+                <div class="perspectives-grid">
+                    
+                    <!-- LSF -->
+                    <div class="perspective-card">
+                        <div class="perspective-icon">
+                            <i class="fas fa-hands-asl-interpreting"></i>
+                        </div>
+                        <h3>Langue des Signes</h3>
+                        <p>
+                            Reconnaissance des lettres et des gestes en temps réel pour faciliter la traduction et l'accessibilité.
+                        </p>
+                    </div>
+
+                    <!-- Jeu Interactif -->
+                    <div class="perspective-card">
+                        <div class="perspective-icon">
+                            <i class="fas fa-hand-scissors"></i>
+                        </div>
+                        <h3>Pierre - Papier - Ciseaux</h3>
+                        <p>
+                            Classification instantanée de gestes symboliques en direct pour des jeux interactifs et des démonstrateurs d'intelligence artificielle ludiques.
+                        </p>
+                    </div>
+
+                    <!-- Gesture Control -->
+                    <div class="perspective-card">
+                        <div class="perspective-icon">
+                            <i class="fas fa-arrow-pointer"></i>
+                        </div>
+                        <h3>Contrôle Gestuel de l'Ordinateur</h3>
+                        <p>
+                            Remplacement de la souris par le mouvement de la main dans l'espace : navigation, clic par pincement de doigts et défilement sans contact physique.
+                        </p>
+                    </div>
+
+                    <!-- Robotique SO-ARM101 par vision -->
+                    <div class="perspective-card">
+                        <div class="perspective-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Robotique & Pilotage SO-ARM101</h3>
+                        <p>
+                            Suivi des mouvements et articulations des doigts par caméra pour téléopérer directement le bras robotisé SO-ARM101 par la vision.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 - Louis Ramette. Conçu et développé avec passion. Hébergé sur GitHub Pages.</p>
+    </footer>
+
+    <!-- Script JS Global -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

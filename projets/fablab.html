@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet | Direction & Modernisation du FabLab (ENSAM Lille)</title>
+    <!-- Feuille de style globale -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           STYLES SPÉCIFIQUES À LA PAGE FABLAB
+           ========================================================================== */
+
+        /* 1. Hero / En-tête */
+        .project-hero {
+            position: relative;
+            min-height: 55vh;
+            display: flex;
+            align-items: flex-end;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.45)),
+                        url('../assets/img/projets/fablab/img_presentation.jpg') center/cover no-repeat;
+            color: #ffffff;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .project-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .project-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        /* 2. Chiffres clés */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 3.5rem;
+        }
+
+        .stat-card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.6rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* 3. Sommaire */
+        .toc-container {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin: 2.5rem 0 3.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .toc-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding-left: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .toc-list a:hover {
+            color: var(--primary-hover);
+            padding-left: 0.3rem;
+        }
+
+        /* 4. Layout des Articles */
+        .article-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .article-text h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .article-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .article-text ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+
+        .article-text ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .article-text ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .article-img-container {
+            width: 100%;
+            height: 330px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            background-color: #f8fafc;
+        }
+
+        .article-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .article-img-container:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Carte de contenu illustrée (si absence d'image secondaire) */
+        .feature-card-showcase {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            border-radius: var(--radius-lg);
+        }
+
+        .feature-card-showcase i {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-card-showcase h3 {
+            font-size: 1.35rem;
+            color: var(--text-main);
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-card-showcase p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 320px;
+        }
+
+        .article-section.reverse .article-text {
+            order: 2;
+        }
+
+        .article-section.reverse .article-img-container {
+            order: 1;
+        }
+
+        /* 5. Tableau Comparatif Avant / Après */
+        .comparison-wrapper {
+            margin: 3.5rem 0 4.5rem;
+        }
+
+        .comparison-wrapper h2 {
+            font-size: 1.75rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            background: #ffffff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            padding: 1.2rem 1.4rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .comparison-table td {
+            padding: 1.2rem 1.4rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .badge-before {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: #fee2e2;
+            color: #b91c1c;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .badge-after {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: #dcfce7;
+            color: #15803d;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* 6. Grille des Projets Développés */
+        .projects-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-showcase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-showcase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .project-showcase-img {
+            width: 100%;
+            height: 200px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            border: 1px solid var(--border-color);
+            background-color: #f8fafc;
+            position: relative;
+        }
+
+        .project-showcase-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-showcase-card:hover .project-showcase-img img {
+            transform: scale(1.04);
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: repeating-linear-gradient(
+                45deg,
+                #f8fafc,
+                #f8fafc 10px,
+                #f1f5f9 10px,
+                #f1f5f9 20px
+            );
+            color: var(--text-muted);
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-md);
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .img-placeholder i {
+            font-size: 2.2rem;
+            color: #94a3b8;
+        }
+
+        .img-placeholder span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .project-showcase-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-showcase-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 0.6rem;
+        }
+
+        .project-showcase-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-showcase-card .project-link {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .project-showcase-card .project-link:hover {
+            color: var(--primary-hover);
+            transform: translateX(4px);
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .article-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .article-section.reverse .article-text {
+                order: 1;
+            }
+
+            .article-section.reverse .article-img-container {
+                order: 2;
+            }
+
+            .article-img-container {
+                height: 240px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">Louis Ramette<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">À propos</a></li>
+                <li><a href="../index.html#education">Parcours</a></li>
+                <li><a href="../index.html#certifications">Certifications</a></li>
+                <li><a href="../index.html#projects">Projets</a></li>
+                <li><a href="../index.html#cv">CV</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- En-tête du projet avec photo de présentation -->
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <a href="../index.html#projects" class="project-link" style="color: #60a5fa; margin-bottom: 1rem; display: inline-flex;">
+                    <i class="fas fa-arrow-left"></i> Retour aux projets
+                </a>
+                <h1>Direction & Modernisation du FabLab | ENSAM Lille</h1>
+                <div class="tags">
+                    <span class="tag">FabLab Manager</span>
+                    <span class="tag">Arts et Métiers</span>
+                    <span class="tag">Parc FDM & SLA</span>
+                    <span class="tag">Partenariat xTool</span>
+                    <span class="tag">Électronique THT / SMD</span>
+                    <span class="tag">HSE & Sécurité</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            
+            <!-- Introduction & Contexte Général -->
+            <div class="about-text" style="margin-bottom: 2rem;">
+                <h2>Introduction & Vision Stratégique</h2>
+                <p>
+                    Véritable pôle d'innovation technique au cœur du campus des Arts et Métiers de Lille, le <strong>FabLab ENSAM</strong> est le lieu de convergence où les élèves-ingénieurs concrétisent leurs idées, de la modélisation CAO au prototype fonctionnel.
+                </p>
+                <p>
+                    Pour sa deuxième année d'exercice, j'ai assuré la responsabilité globale et le pilotage technique de la structure. Ma mission : réorganiser l'espace, doubler le parc d'impression FDM pour diviser les temps de cycle par deux, diversifier les technologies (soudure CMS, graveuse laser xTool, aspiration des fumées), et démocratiser l'usage des machines via des formations et des guides opératoires standardisés.
+                </p>
+            </div>
+
+            <!-- Chiffres Clés du Projet -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">÷2</div>
+                    <div class="stat-label">Temps d'impression moyen (vs Ender 3)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1<sup>er</sup></div>
+                    <div class="stat-label">Partenariat international (xTool)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Des procédés documentés & sécurisés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">+50</div>
+                    <div class="stat-label">Projets & étudiants accompagnés</div>
+                </div>
+            </div>
+
+            <!-- Sommaire / Table des Matières -->
+            <nav class="toc-container" aria-label="Sommaire de la page">
+                <div class="toc-title">
+                    <i class="fas fa-list-ol"></i> Sommaire du projet
+                </div>
+                <ol class="toc-list">
+                    <li><a href="#partie-1">1. État des Lieux & Transition du Parc Machines</a></li>
+                    <li><a href="#partie-2">2. Partenariat International xTool (« 1% for Makers Donation »)</a></li>
+                    <li><a href="#partie-3">3. Pôle Électronique CMS (SMD), Outillage d'Atelier & Aspiration</a></li>
+                    <li><a href="#partie-4">4. Pédagogie, Formations sur Mesure & Rédaction des Guides Techniques</a></li>
+                    <li><a href="#partie-5">5. Tableau de Synthèse : « Avant / Après »</a></li>
+                    <li><a href="#partie-6">6. Galerie des Réalisations & Synergies Campus</a></li>
+                </ol>
+            </nav>
+
+            <!-- ==========================================================================
+               ARTICLES DÉTAILLÉS ALTERNÉS
+               ========================================================================== -->
+
+            <!-- 1. Parc Machines -->
+            <article id="partie-1" class="article-section">
+                <div class="article-text">
+                    <h2>1. État des Lieux & Transition du Parc Machines</h2>
+                    <p>
+                        À mon arrivée, la capacité d'impression FDM du FabLab reposait sur une unique Creality Ender 3. Pour répondre à la demande croissante des étudiants et fluidifier les fabrications, j'ai géré l'acquisition de <strong>deux imprimantes Elegoo Neptune 4 Pro</strong>.
+                    </p>
+                    <p>
+                        Ces machines permettent de <strong>diviser par deux les temps d'impression</strong> par rapport à l'Ender 3. Très faciles à prendre en main avec leur logiciel officiel, elles offrent des options avancées très utiles comme l'insertion de G-code personnalisé pour ajuster précisément les paramètres. Elles sont bien plus performantes au quotidien, avec un protocole clair de calibration, de maintenance et d'approvisionnement en pièces de rechange. De plus, leur plateau plus grand, chauffant et doté d'un revêtement texturé permet d'imprimer sereinement des matériaux techniques comme l'ABS. L'Ender 3 reste opérationnelle en appoint, mais les deux Elegoo sont désormais utilisées en priorité.
+                    </p>
+                </div>
+                <div class="article-img-container">
+                    <img src="../assets/img/projets/fablab/img_presentation.jpg" alt="Vue d'ensemble de l'atelier FabLab ENSAM Lille">
+                </div>
+            </article>
+
+            <!-- 2. Partenariat xTool -->
+            <article id="partie-2" class="article-section reverse">
+                <div class="article-text">
+                    <h2>2. Partenariat avec xTool (Programme « 1% for Makers Donation »)</h2>
+                    <p>
+                        Dans l'optique d'élargir les possibilités de prototypage du FabLab, j'ai monté un dossier de candidature auprès de la marque <strong>xTool</strong> via leur programme de mécénat <strong>« 1% for Makers Donation »</strong>.
+                    </p>
+                    <p>
+                        Notre dossier a été retenu, nous rendant éligibles à l'obtention d'une <strong>graveuse laser accompagnée de son unité de filtration</strong>. Cet équipement permet de diversifier les matières travaillées au local et débloque une nouvelle technologie : la découpe et la gravure de maquettes précises en bois ou en PMMA (plexiglas), ainsi que de nouvelles perspectives comme la gravure directe de pistes sur circuits imprimés (PCBs).
+                    </p>
+                </div>
+                <div class="article-img-container">
+                    <div class="feature-card-showcase">
+                        <i class="fas fa-handshake"></i>
+                        <h3>xTool 1% for Makers</h3>
+                        <p>Dossier de mécénat technique international retenu pour équiper et moderniser le FabLab de l'ENSAM Lille.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 3. Électronique & Sécurité HSE -->
+            <article id="partie-3" class="article-section">
+                <div class="article-text">
+                    <h2>3. Pôle Électronique, Outillage d'Atelier & Aspiration</h2>
+                    <p>
+                        Pour permettre aux étudiants de monter et tester leurs projets de bout en bout, nous avons complété l'espace avec des équipements ciblés :
+                    </p>
+                    <ul>
+                        <li><strong>Poste de soudure traditionnel :</strong> pour les câblages, connecteurs et composants traversants.</li>
+                        <li><strong>Station de soudure CMS / SMD :</strong> fer fin et flux d'air chaud pour monter ou dessouder des composants de surface.</li>
+                        <li><strong>Aspiration des fumées de soudure :</strong> installation d'un système d'aspiration dédié au poste de brasage afin d'éviter d'inhaler les fumées de flux et d'étain.</li>
+                        <li><strong>Lot d'outillage complet :</strong> acquisition d'un ensemble complet d'outils d'atelier et de pinces de précision indispensables pour le post-traitement, l'assemblage et la maintenance mécanique.</li>
+                    </ul>
+                </div>
+                <div class="article-img-container">
+                    <div class="feature-card-showcase">
+                        <i class="fas fa-microchip"></i>
+                        <h3>Électronique & Outillage</h3>
+                        <p>Postes de soudure THT et CMS, aspiration dédiée des fumées et lot complet de pinces et d'outils d'assemblage.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 4. Pédagogie & Guides -->
+            <article id="partie-4" class="article-section reverse">
+                <div class="article-text">
+                    <h2>4. Pédagogie, Formations & Rédaction de Guides Techniques</h2>
+                    <p>
+                        Afin de rendre les étudiants pleinement autonomes et de garantir la longévité des machines, j'ai formalisé une politique de transmission méthodique :
+                    </p>
+                    <ul>
+                        <li><strong>Ateliers pratiques sur demande :</strong> sessions d'initiation et de perfectionnement au tranchage (Slicing sous Cura / PrusaSlicer / Chitubox) et aux bonnes pratiques d'orientation des pièces.</li>
+                        <li><strong>Rédaction de guides d'utilisation exhaustifs :</strong> procédures standardisées, consignes de sécurité et réglages optimaux pour chaque machine du FabLab.</li>
+                        <li><strong>Extension aux autres départements de l'école :</strong> <em>Matériaux Composites</em>, <em>Usinage</em>, <em>Fonderie</em>facilitant l'accès transverse aux ateliers techniques de l'ENSAM et aux autres associations.</li>
+                    </ul>
+                </div>
+                <div class="article-img-container">
+                    <div class="feature-card-showcase">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Guides & Transfert de Compétences</h3>
+                        <p>Documentation technique pas-à-pas pour l'autonomie des promotions et la transversalité entre départements.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ==========================================================================
+               5. TABLEAU COMPARATIF : AVANT / APRÈS
+               ========================================================================== -->
+            <section id="partie-5" class="comparison-wrapper">
+                <h2>5. Synthèse des Transformations : Avant / Après</h2>
+                <div class="table-responsive">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 22%;">Domaine</th>
+                                <th style="width: 39%;">État Initial (Avant)</th>
+                                <th style="width: 39%;">Après Modernisation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Parc Filament (FDM)</strong></td>
+                                <td>
+                                    <span class="badge-before"><i class="fas fa-times"></i> Initial</span><br>
+                                    1x Creality Ender 3 vieillissante, débit et vitesse limités, temps d'attente fréquents.
+                                </td>
+                                <td>
+                                    <span class="badge-after"><i class="fas fa-check"></i> Modernisé</span><br>
+                                    Ajout de <strong>2x Elegoo Neptune 4 Pro</strong> (temps divisé par deux, plateau chauffant texturé compatible ABS, prise en main rapide). Ender 3 conservée en appoint.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Parc Résine (SLA)</strong></td>
+                                <td>
+                                    <span class="badge-before"><i class="fas fa-times"></i> Initial</span><br>
+                                    1x Elegoo Mars isolée, post-traitement artisanal sans gestion dédiée des vapeurs.
+                                </td>
+                                <td>
+                                    <span class="badge-after"><i class="fas fa-check"></i> Modernisé</span><br>
+                                    Maintien de l'Elegoo Mars avec station de lavage et chambre de polymérisation UV dédiée.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Électronique & Câblage</strong></td>
+                                <td>
+                                    <span class="badge-before"><i class="fas fa-times"></i> Initial</span><br>
+                                    Outillage sommaire, fer à souder basique, pas d'équipement pour composants CMS.
+                                </td>
+                                <td>
+                                    <span class="badge-after"><i class="fas fa-check"></i> Modernisé</span><br>
+                                    Poste complet : <strong>station de soudure traversante</strong> + <strong>station CMS / SMD</strong> (air chaud) et aspiration dédiée des fumées.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Outillage & Organisation</strong></td>
+                                <td>
+                                    <span class="badge-before"><i class="fas fa-times"></i> Initial</span><br>
+                                    Outils dispersés, pertes de matériel et manque d'outils d'ajustement.
+                                </td>
+                                <td>
+                                    <span class="badge-after"><i class="fas fa-check"></i> Modernisé</span><br>
+                                    Acquisition d'un <strong>gros lot d'outils d'atelier et de pinces de précision</strong> pour l'assemblage et la maintenance.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sécurité & HSE</strong></td>
+                                <td>
+                                    <span class="badge-before"><i class="fas fa-times"></i> Initial</span><br>
+                                    Aération naturelle passive des locaux, absence de protocole formel.
+                                </td>
+                                <td>
+                                    <span class="badge-after"><i class="fas fa-check"></i> Modernisé</span><br>
+                                    Installation d'un <strong>système d'aspiration des fumées au poste de soudure</strong> et unité de filtration fournie avec la graveuse xTool.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Partenariats & Financements</strong></td>
+                                <td>
+                                    <span class="badge-before"><i class="fas fa-times"></i> Initial</span><br>
+                                    Ressources limitées aux seules cotisations étudiantes de l'école.
+                                </td>
+                                <td>
+                                    <span class="badge-after"><i class="fas fa-check"></i> Modernisé</span><br>
+                                    Éligibilité au programme de mécénat <strong>xTool 1% for Makers</strong> : intégration d'une graveuse laser avec filtration (bois, PMMA, prototypage PCB).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pédagogie & Documentation</strong></td>
+                                <td>
+                                    <span class="badge-before"><i class="fas fa-times"></i> Initial</span><br>
+                                    Transmission orale et informelle des bonnes pratiques.
+                                </td>
+                                <td>
+                                    <span class="badge-after"><i class="fas fa-check"></i> Modernisé</span><br>
+                                    Rédaction de <strong>guides d'utilisation détaillés</strong> (FabLab, Composites, Gravure) et ateliers de formation sur demande.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ==========================================================================
+               6. RÉALISATIONS & PROJETS DU FABLAB
+               ========================================================================== -->
+            <section id="partie-6">
+                <h2>6. Projets Réalisés au FabLab & Synergies Campus</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem;">
+                    Grâce à la fiabilisation du parc et à la diversification des procédés, le FabLab a constitué le centre névralgique de prototypage pour nos projets de concours d'ingénierie majeurs (notamment <strong>L'Oréal Brandstorm</strong> et le <strong>Drone DUAV</strong>), ainsi que pour les initiatives des promotions et associations étudiantes :
+                </p>
+
+                <div class="projects-showcase-grid">
+                    
+                    <!-- 1. L'Oréal Brandstorm -->
+                    <div class="project-showcase-card">
+                        <div class="project-showcase-img">
+                            <img src="../assets/img/projets/brandstorm/gadzinnov.jpg" alt="Premier prototype L'Oréal Brandstorm imprimé au FabLab">
+                        </div>
+                        <span class="project-showcase-tag">Compétition Internationale • Vainqueur France</span>
+                        <h3>L'Oréal Brandstorm (POC & Prototypage)</h3>
+                        <p>
+                            Conception et fabrication additive du tout premier Proof of Concept (POC) fonctionnel lors du hackathon GadzInnov, suivi de multiples itérations d'ajustement mécanique au FabLab avant la phase d'usinage CNC aluminium.
+                        </p>
+                        <a href="l-oreal-brandstorm.html" class="project-link">
+                            Voir le projet détaillé <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- 2. Drone DUAV H1-Alifractura -->
+                    <div class="project-showcase-card">
+                        <div class="project-showcase-img">
+                            <img src="../assets/img/projets/drone/img6.jpg" alt="Sous-ensembles et trains d'atterrissage du drone imprimés au FabLab">
+                        </div>
+                        <span class="project-showcase-tag">Dassault UAV Challenge • Aéronautique</span>
+                        <h3>Drone H1-Alifractura (Pièces & Trains Rétractables)</h3>
+                        <p>
+                            Fabrication et validation de plusieurs sous-ensembles du drone au FabLab : pièces structurelles en PETG, conduits internes et prototypage complet du système cinématique de train d'atterrissage tricycle rétractable.
+                        </p>
+                        <a href="duav.html" class="project-link">
+                            Voir le projet détaillé <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- 3. Fonderie Cire Perdue -->
+                    <div class="project-showcase-card">
+                        <div class="project-showcase-img">
+                            <img src="../assets/img/projets/fablab/cire.jpeg" alt="Pièce en résine calcinable pour fonderie">
+                        </div>
+                        <span class="project-showcase-tag">Procédé Hybride Additif & Métallurgie</span>
+                        <h3>Fonderie & Cire Perdue</h3>
+                        <p>
+                            Impression en résine calcinable haute définition de pièces modèles complexes pour les ateliers de fonderie de l'ENSAM. Une synergie directe entre fabrication additive et procédés industriels traditionnels.
+                        </p>
+                    </div>
+
+                    <!-- 4. Moules Composites & Époxy -->
+                    <div class="project-showcase-card">
+                        <div class="project-showcase-img">
+                            <!-- Déposez votre photo dans assets/img/projets/fablab/moules.jpg et décommentez la ligne suivante : -->
+                            <!-- <img src="../assets/img/projets/fablab/moules.jpg" alt="Moules imprimés pour composites"> -->
+                            <div class="img-placeholder">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Emplacement Photo : Moules Composites & Époxy</span>
+                            </div>
+                        </div>
+                        <span class="project-showcase-tag">Rapid Tooling & Matériaux Avancés</span>
+                        <h3>Moules Composites & Époxy</h3>
+                        <p>
+                            Fabrication de moules et contre-moules imprimés en 3D pour la stratification de pièces composites en fibre de carbone et la coulée de résines époxy.
+                        </p>
+                    </div>
+
+                    <!-- 5. Boîtier Serveur NAS -->
+                    <div class="project-showcase-card">
+                        <div class="project-showcase-img">
+                            <!-- Déposez votre photo dans assets/img/projets/fablab/nas.jpg et décommentez la ligne suivante : -->
+                            <!-- <img src="../assets/img/projets/fablab/nas.jpg" alt="Boîtier serveur NAS imprimé en 3D"> -->
+                            <div class="img-placeholder">
+                                <i class="fas fa-server"></i>
+                                <span>Emplacement Photo : Boîtier Serveur NAS</span>
+                            </div>
+                        </div>
+                        <span class="project-showcase-tag">Intégration Hardware & Thermique</span>
+                        <h3>Boîtier Serveur NAS sur Mesure</h3>
+                        <p>
+                            Conception mécanique sous CAO et impression 3D d'un châssis modulaire pour serveur NAS personnel, intégrant le dimensionnement des flux d'air de refroidissement et l'implantation de la connectique.
+                        </p>
+                    </div>
+
+                    <!-- 6. AMJE & Assos -->
+                    <div class="project-showcase-card">
+                        <div class="project-showcase-img">
+                            <img src="../assets/img/projets/fablab/AMJE.jpg" alt="Prototypage AMJE et vie associative">
+                        </div>
+                        <span class="project-showcase-tag">Junior-Entreprise & Partenariats</span>
+                        <h3>Support AMJE & Associations</h3>
+                        <p>
+                            Prototypage de pièces pour les études industrielles de l'Arts et Métiers Junior Entreprise (AMJE) et fourniture de composants sur-mesure pour les associations du campus (4L Trophy, robotique, drone).
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 - Louis Ramette. Conçu et développé avec passion. Hébergé sur GitHub Pages.</p>
+    </footer>
+
+    <!-- Script JS Global -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
